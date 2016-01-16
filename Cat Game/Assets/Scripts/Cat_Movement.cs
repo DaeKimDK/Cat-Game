@@ -23,7 +23,6 @@ public class Cat_Movement : MonoBehaviour {
         if (hidden == true)
         {
             hide_time -= Time.deltaTime;
-            GetComponent.enabled = false;
             return;
         }
         if(walkTime <= 0){ location = flipDirection(location); }
