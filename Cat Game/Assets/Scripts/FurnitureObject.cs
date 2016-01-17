@@ -20,13 +20,15 @@ public class FurnitureObject : MonoBehaviour {
         for (int i = 0; i < hideable_cats; i++)
         {
             cats[i] -= Time.deltaTime;
-            if (cats[0] < 3.0F)
+            if (cats_hidden > i & cats[i] <= 3.0F)
             {
-                Animator anim = SFX.GetComponent<Animator>();
-                anim.StartPlayback();
+                Animation anim = SFX.GetComponent<Animation>();
                 SFX.gameObject.SetActive(true);
-                if (cats_hidden > i & cats[i] <= 0.0F) {
-                    anim.StopPlayback();
+                anim.Play("Knock_Animation");
+                if (cats_hidden > i & cats[i] <= 0.0F)
+                {
+                    SFX.gameObject.SetActive(false);
+                    anim.Stop();
                     removeCat(i);
                     continue; }
             }
@@ -39,6 +41,7 @@ public class FurnitureObject : MonoBehaviour {
         {
             Debug.Log(cats_hidden);
             cats[cats_hidden++] = catTime;
+            return true;
         } else { return false; }
         return true;
     }
