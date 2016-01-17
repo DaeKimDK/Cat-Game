@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 public class GameState : MonoBehaviour {
     public int num_of_cats;
-    public float timeLeft = 3;
+	private float timeLeft;
 	public int GameMode;
-	private float TempNUM = 3;
+	public float TempNUM = 3;
 	public static GameState instance;
 	// Use this for initialization
 	public static GameState Instance
@@ -27,6 +27,8 @@ public class GameState : MonoBehaviour {
 	}
 	void Start () {
         num_of_cats = 0;
+		timeLeft = TempNUM;
+
 	}
 	
 	// Update is called once per frame
