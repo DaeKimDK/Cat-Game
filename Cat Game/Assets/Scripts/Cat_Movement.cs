@@ -7,8 +7,8 @@ public class Cat_Movement : MonoBehaviour {
     private Vector3 offset;
     public float speed = 1.0f;
     public bool hidden;
-    public const float hide_time = 5.0f;
-    private float current_hide_time = 5;
+    public float hide_time = 10.0F;
+    private float current_hide_time = 0;
     string direction;
     float walkTime;
     public bool draggable;
@@ -21,7 +21,7 @@ public class Cat_Movement : MonoBehaviour {
         walkTime = Random.Range(5.0F, 10.0F) ; //  How long will the cat walk in this direction;
         hidden = false;
         is_dropped = false;
-        timer = 1;
+        timer = .25F;
     }
 	
 
@@ -52,6 +52,14 @@ public class Cat_Movement : MonoBehaviour {
 
     }
 
+    void OnCollisionEnter2D(Collision2D wall)
+    {
+        if(wall.gameObject.tag == "Wall")
+        {
+            location = flipDirection(location);
+        }
+    }
+
     void OnTriggerStay2D(Collider2D Furniture)
     {
         if (is_dropped)
@@ -62,9 +70,11 @@ public class Cat_Movement : MonoBehaviour {
             //{
             if (Furniture.GetComponent<FurnitureObject>().addCat(hide_time))
             {
+                Debug.Log("Hiding...");
                 hidden = true;
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                //current_hide_time -= hide_time;  
+                Debug.Log(hidden);
+                current_hide_time = hide_time;  
             }
             //}
         }
