@@ -7,10 +7,13 @@ public class FurnitureObject : MonoBehaviour {
     int cats_hidden = 0;
     float[] cats;
     Animator anim;
+    GameObject SFX;
     // Use this for initialization
     void Start () {
         cats = new float[hideable_cats];
-        anim = gameObject.GetComponent<Animator>();
+        SFX = GameObject.FindWithTag("SFX");
+        SFX.gameObject.SetActive(false);
+        cats[0] = 10.0F;
     }
 	
 	// Update is called once per frame
@@ -18,18 +21,19 @@ public class FurnitureObject : MonoBehaviour {
         for(int i = 0; i < hideable_cats; i++)
         {
             cats[i] -= Time.deltaTime;
-            if (cats[i] < 3.0F)
+            if (cats[0] < 3.0F)
             {
-
+                Animator anim = SFX.GetComponent<Animator>();
+                anim.StartPlayback();
+                SFX.gameObject.SetActive(true);
                 if (cats[i] <= 0.0F) {
-                    anim.Stop();
+                    anim.StopPlayback();
                     removeCat(i);
                     continue; }
-                anim.Play("Furniture_Animation");
             }
         }
 	
 	}
-    void addCat(int catTime){ cats[cats_hidden++] = catTime; }
+    public void addCat(int catTime){ cats[cats_hidden++] = catTime; }
     void removeCat(int index) { cats[index] = 0; cats_hidden--; }
 }
