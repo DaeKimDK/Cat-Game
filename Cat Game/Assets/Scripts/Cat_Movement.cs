@@ -20,11 +20,6 @@ public class Cat_Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         walkTime -= Time.deltaTime;
-        if (hidden == true)
-        {
-            hide_time -= Time.deltaTime;
-            return;
-        }
         if(walkTime <= 0){ location = flipDirection(location); }
         transform.position += location * speed * Time.deltaTime;
     }
