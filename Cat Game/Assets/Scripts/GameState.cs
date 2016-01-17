@@ -6,7 +6,11 @@ public class GameState : MonoBehaviour {
 	private float timeLeft;
 	public int GameMode;
 	public float TempNUM = 3;
+	public bool inPlay;
 	public static GameState instance;
+	public int RightBoundary;
+	public int LeftBoundary;
+	public float transitionDuration = 5f;
 	// Use this for initialization
 	public static GameState Instance
 	{
@@ -24,11 +28,11 @@ public class GameState : MonoBehaviour {
 		}DontDestroyOnLoad (gameObject);
 
 		GameMode = 0;
-	}
+		}
 	void Start () {
         num_of_cats = 0;
 		timeLeft = TempNUM;
-
+		inPlay = true;
 	}
 	
 	// Update is called once per frame
@@ -39,9 +43,11 @@ public class GameState : MonoBehaviour {
 		}
 			if (timeLeft < 0)
         {
-			GameMode=1;
-			timeLeft=TempNUM;
-			Application.LoadLevel("EndGame");
+			inPlay=false;
+			CamPan ();
+	//		GameMode=1;
+	//		timeLeft=TempNUM;
+	//		Application.LoadLevel("EndGame");
 		}
 
 
@@ -72,5 +78,19 @@ public class GameState : MonoBehaviour {
 	{
 		GameMode = 0;
 		Application.LoadLevel ("Main Game Screen");
+	}
+
+	public void CamPan()
+	{
+		Vector3 minusVector = new Vector3 (.01f, 0, 0);
+		Vector3 newPosition = new Vector3(RightBoundary,0,-10);
+		Vector3 leftPosition = new Vector3(LeftBoundary,0,-10);
+		Camera.main.transform.position = newPosition;
+		float t = 0.0f;
+		while (t < 1.0f) {
+			t += Time.deltaTime;
+			Camera.main.transform.position = Vector3.Lerp(newPosition,leftPosition,t);
+		}
+
 	}
 }
