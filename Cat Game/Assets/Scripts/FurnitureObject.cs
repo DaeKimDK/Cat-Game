@@ -13,7 +13,6 @@ public class FurnitureObject : MonoBehaviour {
         cats = new float[hideable_cats];
         SFX = GameObject.FindWithTag("SFX");
         SFX.gameObject.SetActive(false);
-        cats[0] = 10.0F;
     }
 	
 	// Update is called once per frame
