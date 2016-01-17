@@ -23,7 +23,8 @@ public class Cat_Movement : MonoBehaviour {
         if(walkTime <= 0){ location = flipDirection(location); }
         transform.position += location * speed * Time.deltaTime;
     }
-    
+
+
     Vector3 flipDirection(Vector3 originalDir)
     {
         walkTime = Random.Range(5.0F, 10.0F);

@@ -32,8 +32,9 @@ public class FurnitureObject : MonoBehaviour {
                     continue; }
             }
         }
-	
 	}
-    public void addCat(int catTime){ cats[cats_hidden++] = catTime; }
+
+    void OnTriggerEnter2D(Collider2D cat){ addCat(cat.GetComponent<Cat_Movement>().hide_time);}
+    public void addCat(float catTime){ cats[cats_hidden++] = catTime; }
     void removeCat(int index) { cats[index] = 0; cats_hidden--; }
 }
