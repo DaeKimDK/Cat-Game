@@ -47,10 +47,11 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraPanning.cs" />
      <Compile Include="Assets\Scripts\Cat_Movement.cs" />
-     <Compile Include="Assets\Scripts\Draggable.cs" />
-     <Compile Include="Assets\Scripts\Furniture.cs" />
+     <Compile Include="Assets\Scripts\DragScript.cs" />
+     <Compile Include="Assets\Scripts\FurnitureObject.cs" />
      <Compile Include="Assets\Scripts\GameState.cs" />
      <Compile Include="Assets\Scripts\Temp.cs" />
+     <Compile Include="Assets\Scripts\manager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
