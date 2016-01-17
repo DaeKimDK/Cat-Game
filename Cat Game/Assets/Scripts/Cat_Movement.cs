@@ -97,22 +97,31 @@ public class Cat_Movement : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Debug.Log("Test");
-        screenPoint = Camera.main.WorldToScreenPoint(this.gameObject.transform.position);
-        offset = this.gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+        if (!hidden)
+        {
+            Debug.Log("Test");
+            screenPoint = Camera.main.WorldToScreenPoint(this.gameObject.transform.position);
+            offset = this.gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+        }
     }
     
     void OnMouseDrag()
     {
-        Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-        Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
-        transform.position = cursorPosition;
+        if (!hidden)
+        {
+            Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+            Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
+            transform.position = cursorPosition;
+        }
     }
 
     void OnMouseUp()
     {
-        Debug.Log("Dropped");
-        is_dropped = true;
+        if (!hidden)
+        {
+            Debug.Log("Dropped");
+            is_dropped = true;
+        }
     }
 }
 

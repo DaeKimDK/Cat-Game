@@ -17,6 +17,9 @@ public class EndGameManager : MonoBehaviour {
 	}
 	public void PlayAgain()
 	{
+		gameState.movedRight = false;
+		gameState.inPlay = true;
+		gameState.timeLeft = gameState.TempNUM;
 		gameState.LoadGameLevel ();
 	}
 }
