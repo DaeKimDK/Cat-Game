@@ -3,14 +3,18 @@ using System.Collections;
 using UnityEngine.UI;
 public class GameState : MonoBehaviour {
     public int num_of_cats;
-	private float timeLeft;
+	public float timeLeft;
 	public int GameMode;
 	public float TempNUM = 3;
 	public bool inPlay;
 	public static GameState instance;
 	public int RightBoundary;
+	public int CamTIME = 5;
 	public int LeftBoundary;
 	public float transitionDuration = 5f;
+	public AutoCam autoCam;
+	public bool movedRight;
+
 	// Use this for initialization
 	public static GameState Instance
 	{
@@ -33,6 +37,7 @@ public class GameState : MonoBehaviour {
         num_of_cats = 0;
 		timeLeft = TempNUM;
 		inPlay = true;
+		movedRight = false;
 	}
 	
 	// Update is called once per frame
@@ -41,15 +46,25 @@ public class GameState : MonoBehaviour {
 		if (timeLeft > 0 && GameMode == 0) {
 			timeLeft -= Time.deltaTime;
 		}
-			if (timeLeft < 0)
-        {
-			inPlay=false;
-			CamPan ();
-	//		GameMode=1;
-	//		timeLeft=TempNUM;
-	//		Application.LoadLevel("EndGame");
-		}
+			if (timeLeft < 0) {
+			inPlay = false;
+			// Gamemode 3 is endgame checking mode 
+			GameMode = 3;
 
+			if (inPlay == false) {
+				StartCoroutine ("CamPan");
+			}
+
+
+			// When the Camera has reached the end
+			if (inPlay == false && Camera.main.transform.position.x < LeftBoundary) {
+				autoCam.panning=false;
+				movedRight=false;
+				GameMode = 1;
+				timeLeft = TempNUM;
+				Application.LoadLevel ("EndGame");
+			}
+		}
 
 
 	}
@@ -80,17 +95,24 @@ public class GameState : MonoBehaviour {
 		Application.LoadLevel ("Main Game Screen");
 	}
 
-	public void CamPan()
+	public IEnumerator CamPan()
 	{
-		Vector3 minusVector = new Vector3 (.01f, 0, 0);
 		Vector3 newPosition = new Vector3(RightBoundary,0,-10);
 		Vector3 leftPosition = new Vector3(LeftBoundary,0,-10);
-		Camera.main.transform.position = newPosition;
-		float t = 0.0f;
-		while (t < 1.0f) {
-			t += Time.deltaTime;
-			Camera.main.transform.position = Vector3.Lerp(newPosition,leftPosition,t);
+		if (movedRight == false) {
+			Camera.main.transform.position = newPosition;
 		}
+		movedRight = true;
+		// This is the moment mom walks in to the room /////
+
+		yield return new WaitForSeconds(1.0f);
+		Vector3 minusVector = new Vector3 (.01f, 0, 0);
+		if (movedRight) {
+			autoCam.StartPanning ();
+		}
+		yield return new WaitForSeconds (4);
 
 	}
+
+
 }
