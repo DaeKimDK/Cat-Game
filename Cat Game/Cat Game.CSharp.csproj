@@ -64,7 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraPanning.cs" />
     <Compile Include="Assets\Scripts\Cat_Movement.cs" />
-    <Compile Include="Assets\Scripts\DragScript.cs" />
+    <Compile Include="Assets\Scripts\EndGameManager.cs" />
     <Compile Include="Assets\Scripts\FurnitureObject.cs" />
     <Compile Include="Assets\Scripts\GameState.cs" />
     <Compile Include="Assets\Scripts\Temp.cs" />
