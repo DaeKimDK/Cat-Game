@@ -60,6 +60,10 @@ public class Cat_Movement : MonoBehaviour {
         {
             location = flipDirection(location);
         }
+        if(wall.gameObject.tag == "Cat")
+        {
+            Physics2D.IgnoreCollision(wall.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());//IgnoreCollision2D(wall.collider, collider);
+        }
     }
 
     void OnTriggerStay2D(Collider2D Furniture)
