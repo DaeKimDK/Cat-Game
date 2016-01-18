@@ -9,15 +9,17 @@ public class Cat_Movement : MonoBehaviour {
     public bool hidden;
     public float hide_time = 10.0F;
     private float current_hide_time = 0;
-    string direction;
     float walkTime;
     public bool draggable;
     private bool is_dropped;
     private float timer;
-    Vector3 location = new Vector3(1, 0, 0);
+    Vector3 location;
 
     // Use this for initialization
     void Start () {
+        int direction = (int)Random.Range(-1, 2);
+        location = new Vector3((direction != 0 ? direction : 1), 0, 0);
+        if(direction < 0) { gameObject.transform.Rotate(0, 180, 0); }
         walkTime = Random.Range(5.0F, 10.0F) ; //  How long will the cat walk in this direction;
         hidden = false;
         is_dropped = false;

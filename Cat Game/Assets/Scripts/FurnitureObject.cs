@@ -3,6 +3,7 @@ using System.Collections;
 
 public class FurnitureObject : MonoBehaviour {
 
+    public bool can_hide;
     public int hideable_cats = 3;
     int cats_hidden = 0;
     public float[] cats;
@@ -37,6 +38,9 @@ public class FurnitureObject : MonoBehaviour {
 
 
     public bool addCat(float catTime){
+        if(!can_hide) {
+            Debug.Log("cant hide the cat.");
+            return false; }
         if (cats_hidden < hideable_cats)
         {
             Debug.Log(cats_hidden);
