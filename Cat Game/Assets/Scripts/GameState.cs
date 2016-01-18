@@ -31,7 +31,9 @@ public class GameState : MonoBehaviour {
 			Destroy (gameObject);
 		}DontDestroyOnLoad (gameObject);
 
-		GameMode = 0;
+
+		// GameMode 9 is Main Menu
+		GameMode = 9;
 		}
 	void Start () {
         num_of_cats = 0;
