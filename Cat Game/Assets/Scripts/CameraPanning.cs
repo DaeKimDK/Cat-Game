@@ -5,15 +5,15 @@ public class CameraPanning : MonoBehaviour {
 
     public void moveLeft()
     {
-        if (Camera.main.transform.position.x >= -10)
-        Camera.main.transform.Translate(-5, 0, 0);
+        if (Camera.main.transform.position.x >= -30)
+        Camera.main.transform.Translate(-4, 0, 0);
     }
 
     public void moveRight()
     {
-        if (Camera.main.transform.position.x <= 10)
+        if (Camera.main.transform.position.x <= -1)
         {
-            Camera.main.transform.Translate(5, 0, 0);
+            Camera.main.transform.Translate(4, 0, 0);
         }
     }
 

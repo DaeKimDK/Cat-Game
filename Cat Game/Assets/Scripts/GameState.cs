@@ -33,7 +33,7 @@ public class GameState : MonoBehaviour {
 
 
 		// GameMode 9 is Main Menu
-		GameMode = 9;
+		GameMode = 0;
 		}
 	void Start () {
         num_of_cats = 0;

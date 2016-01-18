@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class AutoCam : MonoBehaviour {
-	public int leftBoundary = -14;
+	public int leftBoundary = -30;
 	public bool panning;
 	public GameState gameState;
 	Vector3 tempVector = new Vector3(0.1f,0,0);
